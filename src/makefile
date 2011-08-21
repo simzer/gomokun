@@ -10,13 +10,13 @@ headers := engine.h \
 
 objects := $(patsubst %.c, %.o, $(sources))
 
-all: gomoko
+all: gomoku
 
-gomoko: $(objects)
+gomoku: $(objects)
 	gcc -o $@ $(objects)
 
 clean:
-	rm -rf *.o gomoko
+	rm -rf *.o gomoku
 
 %.o: %c $(headers)
 	gcc -c -Wall -o $@ $<

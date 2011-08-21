@@ -11,10 +11,6 @@ int main(int argc, char **argv)
   int row, col;
   char command[256];
 
-  engine_step(9, 9, engine);
-  printf("%d,%d:\n", 9, 9);
-//  board_print(engine->board);
-
   while(1)
   {
     if (scanf("%s %d,%d", command, &row, &col) == 3)
@@ -24,7 +20,7 @@ int main(int argc, char **argv)
 //        printf("Round %d:\n", engine->round);
         ai_calculate_step(engine, &row, &col);
         engine_step(row, col, engine);
-        printf("%d,%d:\n", row,col);
+        printf("%d,%d\n", row,col);
 //        board_print(engine->board);
         fflush(stdout);
       }
