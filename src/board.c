@@ -5,6 +5,8 @@
 
 #include "board.h"
 
+const char board_signs[] = { ' ', 'X', 'O'};
+
 board_type *board_create(int width,
                         int height)
 {
@@ -72,7 +74,7 @@ void board_print(board_type *board)
   {
     for(col = 0; col < board->width; col++)
     {
-      printf("%d ", board_get_cell(board, row, col));
+      printf("%c ", board_signs[board_get_cell(board, row, col)]);
     }
     printf("\n");
   }
@@ -88,6 +90,7 @@ board_iterator_type *board_iterator_create(board_type *board)
   }
   res->row = 0;
   res->col = 0;
+  res->run = 0;
   res->board = board;
   return res;
 }
@@ -99,20 +102,28 @@ void board_iterator_destruct(board_iterator_type *iterator)
 
 int board_iterate(int *row, int *col, int **pcell, board_iterator_type *iterator)
 {
-  int active = 1;
-  iterator->col++;
-  if (iterator->col >= iterator->board->width) {
-    iterator->col = 0;
-    iterator->row++;
-  }
-  if (iterator->row >= iterator->board->height) {
+  if (!iterator->run)
+  {
     iterator->row = 0;
-    active = 0;
+    iterator->col = 0;
+    iterator->run = 1;
+  }
+  else
+  {
+    iterator->col++;
+    if (iterator->col >= iterator->board->width) {
+      iterator->col = 0;
+      iterator->row++;
+    }
+    if (iterator->row >= iterator->board->height) {
+      iterator->row = 0;
+      iterator->run = 0;
+    }
   }
   *row  = iterator->row;
   *col  = iterator->col;
   *pcell = &(iterator->board->board[iterator->row*iterator->board->width
-                                 + iterator->col]);
-  return(active);
+                                    + iterator->col]);
+  return(iterator->run);
 }
 

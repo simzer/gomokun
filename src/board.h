@@ -15,6 +15,7 @@ typedef struct
 
 typedef struct
 {
+  int run;
   int row;
   int col;
   board_type *board;

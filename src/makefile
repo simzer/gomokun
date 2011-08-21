@@ -1,9 +1,12 @@
 
 sources := main.c   \
            board.c  \
-           engine.c 
+           engine.c \
+           ai.c 
 
-headers := engine.h board.h
+headers := engine.h \
+           board.h  \
+           ai.h
 
 objects := $(patsubst %.c, %.o, $(sources))
 

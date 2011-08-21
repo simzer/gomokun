@@ -10,15 +10,22 @@ int main(int argc, char **argv)
   engine_type *engine = engine_create(19,19);
   int row, col;
   char command[256];
+
+  engine_step(9, 9, engine);
+  printf("%d,%d:\n", 9, 9);
+//  board_print(engine->board);
+
   while(1)
   {
     if (scanf("%s %d,%d", command, &row, &col) == 3)
     {
-      printf("%s %d,%d:\n", command, row,col);
       if (engine_step(row, col, engine) == 0)
       {
-        printf("Round %d:\n", engine->round);
-        board_print(engine->board);
+//        printf("Round %d:\n", engine->round);
+        ai_calculate_step(engine, &row, &col);
+        engine_step(row, col, engine);
+        printf("%d,%d:\n", row,col);
+//        board_print(engine->board);
         fflush(stdout);
       }
       else
