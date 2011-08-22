@@ -19,6 +19,7 @@ along with GomoKun. If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <strings.h>
 
 #include "board.h"
 #include "engine.h"
@@ -26,7 +27,13 @@ along with GomoKun. If not, see <http://www.gnu.org/licenses/>.
 
 int main(int argc, char **argv)
 {
-  yyparse();
+  if (argc == 3)
+  {
+    if (strcmp(argv[1], "--mode") == 0)
+    {
+      if (strcmp(argv[2], "gomocup") == 0)  yyparse();
+    }
+  }
 
   return(0);
 }
