@@ -16,6 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with GomoKun. If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
+/**
+ *  \file General board class.
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -29,19 +32,10 @@ board_type *board_create(int width,
                         int height)
 {
   board_type *board = malloc(sizeof(board_type));
-  if (board == NULL)
-  {
-      fprintf(stderr, "Out of memory.\n");
-      exit(1);
-  }
+  if (board == NULL) return(NULL);
   board->width  = width;
   board->height = height;
   board->board  = malloc(width * height * sizeof(int));
-  if (board->board == NULL)
-  {
-    fprintf(stderr, "Out of memory.\n");
-    exit(1);
-  }
   board_clear(board);
   return(board);
 }
@@ -55,6 +49,7 @@ void board_clear(board_type *board)
 board_type *board_copy(board_type *board)
 {
   board_type *res = board_create(board->width, board->height);
+  if (res == NULL) return (NULL);
   memcpy(res->board, board->board, board->width * board->height * sizeof(int));
   return(res);
 }

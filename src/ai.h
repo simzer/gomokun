@@ -16,6 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with GomoKun. If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
+/**
+ *  \file Gomoku computer gamer modul.
+ */
 
 #ifndef _AI_H_
 #define _AI_H_

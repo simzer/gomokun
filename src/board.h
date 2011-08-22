@@ -16,6 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with GomoKun. If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
+/**
+ *  \file General board class.
+ */
 
 #ifndef _BOARD_H_
 #define _BOARD_H_

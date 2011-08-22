@@ -17,33 +17,31 @@ You should have received a copy of the GNU General Public License
 along with GomoKun. If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 /**
- *  \file Gomoku game class.
+ *  \file Gomocup protokol modul.
  */
 
-#ifndef _ENGINE_H_
-#define _ENGINE_H_
+#ifndef _GCUP_H_
+#define _GCUP_H_
 
-#include "board.h"
-
-typedef enum
-{
-  ENGINE_EMPTY = 0,
-  ENGINE_BLACK = 1,
-  ENGINE_WHITE = 2
-} engine_player_type;
-
-typedef struct
-{
-  board_type *board;
-  engine_player_type actual_player;
-  int round;
-  int finished;
-} engine_type;
-
-engine_type *engine_create(int width, int height);
-int engine_set(int row, int col, engine_player_type player, engine_type *engine);
-int engine_step(int row, int col, engine_type *engine);
-void engine_reset(engine_type *engine);
-void engine_destruct(engine_type *engine);
+void gcup_start(int size);
+void gcup_rectstart(int width, int height);
+void gcup_restart(void);
+void gcup_begin(void);
+void gcup_board(void );
+void gcup_board_move(int x, int y, int field);
+void gcup_board_done(void );
+void gcup_end(void);
+void gcup_about(void);
+void gcup_turn(int x, int y);
+void gcup_takeback(int x, int y);
+void gcup_play(int x, int y);
+void gcup_info_timeout_turn(int val);
+void gcup_info_timeout_match(int val);
+void gcup_info_max_memory(int val);
+void gcup_info_time_left(int val);
+void gcup_info_game_type(int val);
+void gcup_info_rule(int val);
+void gcup_info_evaluate(int x, int y);
+void gcup_info_folder(char *path);
 
 #endif

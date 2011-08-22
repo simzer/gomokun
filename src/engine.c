@@ -16,6 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with GomoKun. If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
+/**
+ *  \file Gomoku game class.
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -34,13 +37,13 @@ static void engine_init(engine_type *engine)
 engine_type *engine_create(int width, int height)
 {
   engine_type *res = malloc(sizeof(engine_type));
-  if (res == NULL)
-  {
-      fprintf(stderr, "Out of memory.\n");
-      exit(1);
-  }
+  if (res == NULL) return(NULL);
   engine_init(res);
   res->board = board_create(width, height);
+  if (res->board == NULL) {
+    engine_destruct(res);
+    return(NULL);
+  }
   return(res);
 }
 
@@ -50,7 +53,7 @@ void engine_destruct(engine_type *engine)
   free(engine);
 }
 
-int engine_reset(engine_type *engine)
+void engine_reset(engine_type *engine)
 {
   engine_init(engine);
   board_clear(engine->board);

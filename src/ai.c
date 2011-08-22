@@ -16,6 +16,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with GomoKun. If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
+/**
+ *  \file Gomoku computer gamer modul.
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -94,7 +97,14 @@ void ai_calculate_step(engine_type *engine, int *row, int *col)
         }
       }
     }
-  }/*
+  }
+  // Opening move
+  if (score == 0) {
+    *col = engine->board->width / 2;
+    *row = engine->board->height / 2;
+  }
+
+  /*
   // Debug
   {
     int r,c,k;
