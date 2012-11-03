@@ -1,7 +1,0 @@
-.cproject
-.project
-*.o
-gomoku
-lex.yy.c
-y.tab.c
-y.tab.h
